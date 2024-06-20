@@ -7,17 +7,19 @@ export class AppController {
 
   @Get()
   getConfig(): any {
-    return {
-      port: this.configService.port,
-      mode: this.configService.mode,
-      runMigrations: this.configService.runMigrations,
-      otelExporterOtlpEndpoint: this.configService.otelExporterOtlpEndpoint,
-      logLevel: this.configService.logLevel
-    };
-  }
+    const configKeys = [
+      'PORT',
+      'MODE',
+      'RUN_MIGRATIONS',
+      'OTEL_EXPORTER_OTLP_ENDPOINT',
+      'LOG_LEVEL'
+    ];
+    
+    const config = {};
+    configKeys.forEach(key => {
+      config[key] = this.configService.get(key);
+    });
 
-  @Get('hello')
-  getHello(): string {
-    return 'Hello, world!';
+    return config;
   }
 }
