@@ -17,16 +17,18 @@ let AppController = class AppController {
         this.configService = configService;
     }
     getConfig() {
-        return {
-            port: this.configService.port,
-            mode: this.configService.mode,
-            runMigrations: this.configService.runMigrations,
-            otelExporterOtlpEndpoint: this.configService.otelExporterOtlpEndpoint,
-            logLevel: this.configService.logLevel
-        };
-    }
-    getHello() {
-        return 'Hello, world!';
+        const configKeys = [
+            'PORT',
+            'MODE',
+            'RUN_MIGRATIONS',
+            'OTEL_EXPORTER_OTLP_ENDPOINT',
+            'LOG_LEVEL'
+        ];
+        const config = {};
+        configKeys.forEach(key => {
+            config[key] = this.configService.get(key);
+        });
+        return config;
     }
 };
 __decorate([
@@ -35,12 +37,6 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Object)
 ], AppController.prototype, "getConfig", null);
-__decorate([
-    (0, common_1.Get)('hello'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", String)
-], AppController.prototype, "getHello", null);
 AppController = __decorate([
     (0, common_1.Controller)(),
     __metadata("design:paramtypes", [config_service_1.ConfigService])

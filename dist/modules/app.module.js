@@ -9,10 +9,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const config_1 = require("@nestjs/config");
-const fs = require("fs");
-const yaml = require("js-yaml");
 const app_controller_1 = require("./app.controller");
 const config_service_1 = require("../config/config.service");
+const load_config_1 = require("../config/load-config");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -21,10 +20,10 @@ AppModule = __decorate([
             config_1.ConfigModule.forRoot({
                 isGlobal: true,
                 load: [
-                    () => {
-                        const yamlConfig = yaml.load(fs.readFileSync('config.yml', 'utf8'));
-                        return Object.assign({}, yamlConfig);
-                    },
+                    async () => {
+                        const config = await (0, load_config_1.loadConfigurations)();
+                        return config;
+                    }
                 ],
             }),
         ],

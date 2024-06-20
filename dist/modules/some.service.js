@@ -15,11 +15,11 @@ const config_service_1 = require("../config/config.service");
 let SomeService = class SomeService {
     constructor(configService) {
         this.configService = configService;
-        console.log('Port:', this.configService.port);
-        console.log('Mode:', this.configService.mode);
-        console.log('Run Migrations:', this.configService.runMigrations);
-        console.log('OTLP Endpoint:', this.configService.otelExporterOtlpEndpoint);
-        console.log('Log Level:', this.configService.logLevel);
+        console.log('Port:', this.configService.get('PORT'));
+        console.log('Mode:', this.configService.get('MODE'));
+        console.log('Run Migrations:', this.configService.get('RUN_MIGRATIONS'));
+        console.log('OTLP Endpoint:', this.configService.get('OTEL_EXPORTER_OTLP_ENDPOINT'));
+        console.log('Log Level:', this.configService.get('LOG_LEVEL'));
     }
 };
 SomeService = __decorate([

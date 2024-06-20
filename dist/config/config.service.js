@@ -16,20 +16,8 @@ let ConfigService = class ConfigService {
     constructor(configService) {
         this.configService = configService;
     }
-    get port() {
-        return this.configService.get('PORT');
-    }
-    get mode() {
-        return this.configService.get('MODE');
-    }
-    get runMigrations() {
-        return this.configService.get('RUN_MIGRATIONS');
-    }
-    get otelExporterOtlpEndpoint() {
-        return this.configService.get('OTEL_EXPORTER_OTLP_ENDPOINT');
-    }
-    get logLevel() {
-        return this.configService.get('LOG_LEVEL');
+    get(key) {
+        return this.configService.get(key);
     }
 };
 ConfigService = __decorate([
