@@ -34,7 +34,7 @@ This project demonstrates a dynamic configuration loader for a NestJS applicatio
 
 Set the `CONFIG_SOURCES` environment variable to specify the configuration sources:
 ```bash
-export CONFIG_SOURCES=json,yaml,aws
+export CONFIG_SOURCES=json,ymml,aws
 ```
 
 ### AWS Secrets Manager
@@ -78,11 +78,3 @@ LOG_LEVEL: debug
 ## Usage
 
 The application loads configurations from the specified sources and merges them. You can access the configurations dynamically.
-
-## Contributing
-
-Contributions are welcome! Please fork the repository and create a pull request with your changes.
-
-## License
-
-This project is licensed under the MIT License.
